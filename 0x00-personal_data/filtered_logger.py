@@ -42,4 +42,10 @@ class RedactingFormatter(logging.Formatter):
          filter values in incoming log
          records using filter_datum
         """
-        return filter_datum(self.fields, self.REDACTION, super().format(record), self.SEPARATOR)
+        record.message = filter_datum(
+            self.fields,
+            self.REDACTION,
+            record.getMessage(),
+            self.SEPARATOR
+        )
+        return super(RedactingFormatter, self).format(record)
