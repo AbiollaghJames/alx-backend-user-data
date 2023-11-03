@@ -75,7 +75,7 @@ def main() -> None:
         for x, y in zip(r, h):
             ans += '{}={}'.format(y, x)
         logger.info(ans)
-    
+
     cursor.close()
     db.close()
 
