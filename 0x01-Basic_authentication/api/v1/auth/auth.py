@@ -15,7 +15,7 @@ class Auth():
         """
         Just returns False
         """
-        if path is None or excluded_paths is None:
+        if path is None and excluded_paths is None:
             return True
 
         path = path.rstrip('/')
