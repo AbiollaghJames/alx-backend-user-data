@@ -4,7 +4,6 @@ Basic Auth module
 """
 
 from .auth import Auth
-from typing import Tuple
 import base64
 
 
@@ -50,8 +49,9 @@ class BasicAuth(Auth):
         returns the user email and password
         from the Base64 decoded value.
         """
-        if decode_base64_authorization_header is None or not isinstance(
+        if decoded_base64_authorization_header is None or not isinstance(
             decoded_base64_authorization_header, str
         ) or ':' not in decoded_base64_authorization_header:
             return (None, None)
-        return decoded_base64_authorization_header.split(':', 1)
+        u_name, passwd = decoded_base64_authorization_header.split(':', 1)
+        return (u_name, passwd)
