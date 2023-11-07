@@ -5,6 +5,7 @@ Authentication module
 
 from flask import request
 from typing import List, TypeVar
+from werkzeug.urls import url_parse
 
 
 class Auth():
@@ -18,8 +19,8 @@ class Auth():
         if path is None or excluded_paths is None or not len(excluded_paths):
             return True
 
-        path = path.rstrip('/')
-        return path in excluded_paths
+        new_path = url_parse(path).path
+        return new_path in excluded_paths
 
     def authorization_header(self, request=None) -> str:
         """
