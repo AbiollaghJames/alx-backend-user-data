@@ -45,7 +45,7 @@ def forbidden(error):
 
 
 @app.before_request
-def before_request:
+def before_request():
     """
     Filtering each request
     """
