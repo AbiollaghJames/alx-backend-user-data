@@ -5,6 +5,7 @@ Authentication module
 
 from flask import request
 from typing import List, TypeVar
+import fnmatch
 
 
 class Auth():
@@ -15,12 +16,13 @@ class Auth():
         """
         check string params if they need auth
         """
-        if path is None or excluded_paths is None or not len(excluded_paths):
+        if path is None or not excluded_paths:
             return True
 
         new_path = path.rstrip('/')
-        if new_path in excluded_paths:
-            return False
+        for excluded_path in excluded_paths:
+            if fnmatch.fnmatch(new_path, excluded_path):
+                return False
         return True
 
     def authorization_header(self, request=None) -> str:
