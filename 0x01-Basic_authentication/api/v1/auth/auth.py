@@ -23,7 +23,6 @@ class Auth():
             if fnmatch.fnmatch(path, excluded_path):
                 return False
 
-
     def authorization_header(self, request=None) -> str:
         """
         Holds the header information
