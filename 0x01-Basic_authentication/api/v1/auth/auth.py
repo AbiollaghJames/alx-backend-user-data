@@ -15,12 +15,11 @@ class Auth():
         """
         Just returns False
         """
-        if path is None and excluded_paths is None:
+        if path is None or excluded_paths is None:
             return True
 
         path = path.rstrip('/')
-        if path in excluded_paths:
-            return False
+        return path in excluded_paths
 
     def authorization_header(self, request=None) -> str:
         """
