@@ -20,7 +20,8 @@ class Auth():
             return True
 
         new_path = url_parse(path).path
-        return new_path in excluded_paths
+        if new_path in excluded_paths:
+            return False
 
     def authorization_header(self, request=None) -> str:
         """
