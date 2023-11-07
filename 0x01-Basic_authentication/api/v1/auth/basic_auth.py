@@ -4,6 +4,7 @@ Basic Auth module
 """
 
 from .auth import Auth
+from typing import Tuple
 import base64
 
 
