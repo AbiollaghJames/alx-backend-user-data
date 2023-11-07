@@ -13,9 +13,9 @@ class Auth():
     """
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """
-        Just returns False
+        check string params if they need auth
         """
-        if path is None or excluded_paths is None:
+        if path is None or excluded_paths is None or not len(excluded_paths):
             return True
 
         path = path.rstrip('/')
