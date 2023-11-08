@@ -1,10 +1,10 @@
-## Session authentication
+# Session authentication
 
 **Back-end**
 
 **Authentication**
 
-# Resources
+## Resources
 
 **Read or Watch**
 - [REST API Authentication Mechanisms - Only the session auth part](https://www.youtube.com/watch?v=501dpx2IjGY)
@@ -12,7 +12,7 @@
 - [Flask](https://palletsprojects.com/p/flask/)
 - [Flask Cookie](https://flask.palletsprojects.com/en/1.1.x/quickstart/#cookies)
 
-# Learning Objectives
+## Learning Objectives
 At the end of this project, you are expected to be able to explain to anyone, **without the help of Google**
 - What authentication means
 - What session authentication means
