@@ -40,3 +40,12 @@ def session_login() -> str:
 
     user_dict.set_cookie(cookie, session_id)
     return user_dict
+
+@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+def logout() -> str:
+    """Logs out user
+    """
+    from api.v1.app import auth
+    if auth.destroy_session(request):
+        return jsonify({}), 200
+    abort(404)
