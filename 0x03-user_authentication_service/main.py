@@ -1,13 +1,3 @@
-# #!/usr/bin/env python3
-# """
-# Main file
-# """
-# from user import User
-
-# print(User.__tablename__)
-
-# for column in User.__table__.columns:
-#     print("{}: {}".format(column, column.type))
 #!/usr/bin/env python3
 """
 Main file
@@ -18,7 +8,7 @@ from user import User
 
 my_db = DB()
 
-user_1 = my_db.add_user("test@testcom", "SuperHashedPwd")
+user_1 = my_db.add_user("test@test.com", "SuperHashedPwd")
 print(user_1.id)
 
 user_2 = my_db.add_user("test1@test.com", "SuperHashedPwd1")
