@@ -6,7 +6,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
-from sqlalchemy.exc import NoResultFound, InvalidRequestError
 
 from user import Base, User
 
@@ -34,22 +33,13 @@ class DB:
 
     def add_user(self, email: str, hashed_password: str) -> User:
         """
-        Adds user to a DB and returns the new user
+        Adds user to the DB and returns user object
         """
         new_user = User(email=email, hashed_password=hashed_password)
-        self._session.add(new_user)
-        self._session.commit()
-        return new_user
-
-    def find_user_by(self, **kwargs) -> User:
-        """
-        Query DB to find user
-        """
-        users = self._session.query(User)
-        for key, value in kwargs.items():
-            if key not in User.__dict__:
-                raise InvalidRequestError
-            for user in users:
-                if getattr(user, key) == value:
-                    return user
-        raise NoResultFound
+        try:
+            self._session.add(new_user)
+            self._session.commit()
+            return new_user
+        except Exception as e:
+            print(e)
+            raise
