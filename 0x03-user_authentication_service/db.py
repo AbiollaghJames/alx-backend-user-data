@@ -44,3 +44,15 @@ class DB:
         """Query DB to find a particular user
         """
         return self._session.query(User).filter_by(**kwargs).one()
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """Update user based on user_id
+        """
+        user = self._session.query(User).filter_by(id=user_id).first()
+        if user:
+            for key, value in kwargs.items():
+                if not hasattr(user, key):
+                    raise ValueError
+                setattr(user, key, value)
+            self._session.commit()
+            return None
