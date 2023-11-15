@@ -66,16 +66,16 @@ class Auth:
         except NoResultFound:
             return None
 
-    def get_user_from_session_id(session_id: str) -> Union[None, User]:
+    def get_user_from_session_id(session_id: str) -> str:
         """Returns user from session_id
         """
         if session_id is None:
             return None
         try:
             user = self._db.find_user_by(session_id=session_id)
+            return user
         except NoResultFound:
             return None
-        return user
 
     def destroy_session(user_id: int) -> None:
         """Destroy session by updating session_id to None
