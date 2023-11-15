@@ -47,11 +47,11 @@ def logout():
     """Logs the user out
     """
     session_id = request.cookies.get("session_id")
-    user = AUTH.get_user_from_session_id(session_id)
+    user = AUTH.get_user_from_session_id(session_id, None)
     if session_id is None or user is None:
         abort(403)
     AUTH.destroy_session(user_id)
-    return redirect("/")
+    return redirect(url_for('home'))
 
 
 @app.route("/profile", methods=["GET"])
@@ -60,9 +60,9 @@ def profile():
     """
     session_id = request.cookies.get("session_id")
     user = AUTH.get_user_from_session_id(session_id)
-    if not session_id or not user:
-        abort(403)
-    return jsonify({"email": user.email}), 200
+    if user:
+        return jsonify({"email": f"{user.email}"}), 200
+    abort(403)
 
 
 if __name__ == "__main__":
