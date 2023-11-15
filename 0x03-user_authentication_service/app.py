@@ -72,7 +72,7 @@ def get_reset_password_token():
     email = request.form.get("email")
     try:
         generated_tok = AUTH.get_reset_password_token(email)
-        return jsonify({"email": f"{email}", "reset_token": f"{generated_tok}"}), 200
+        return jsonify({"email": email, "reset_token": generated_tok}), 200
     except ValueError:
         abort(403)
 
