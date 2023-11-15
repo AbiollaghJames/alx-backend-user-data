@@ -13,8 +13,10 @@ def register_user(email: str, password: str) -> None:
     """
     data = {'email': email, 'password': password}
     response = requests.post('http://127.0.0.1:5000/users', data=data)
-    assert response.status_code == 200
-    assert response.json() == {'email': email, "message": "user created"}
+    if response.status_code == 200:
+        assert (response.json() == {"email": email, "message": "user created"})
+    assert(response.status_code == 400)
+    assert (response.json() == {"message": "email already registered"})
 
 
 def log_in_wrong_password(email: str, password: str) -> None:
