@@ -23,7 +23,7 @@ def _hash_password(password: str) -> bytes:
 def _generate_uuid() -> str:
     """Generates a users uuid
     """
-    new_uuid = uuid.uuid4()
+    new_uuid = str(uuid.uuid4())
     return new_uuid
 
 
